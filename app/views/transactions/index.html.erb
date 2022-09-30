@@ -1,14 +1,33 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Transactions</h1>
-
-<div id="transactions">
-  <% @transactions.each do |transaction| %>
-    <%= render transaction %>
-    <p>
-      <%= link_to "Show this transaction", transaction %>
-    </p>
-  <% end %>
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.date %></td>
+          <td><%= transaction.name %></td>
+          <td><%= transaction.description %></td>
+          <td>$<%= transaction.amount %></td>
+          <td><%= transaction.category %></td>
+          <td><%= link_to "Show", transaction, class:"btn btn-primary"%></td>
+          <td><%= link_to 'Edit', edit_transaction_path(transaction), class:"btn btn-info" %></td> 
+          <td><%= button_to "Delete", @transaction, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class:"btn btn-danger" %></td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New transaction", new_transaction_path %>
+<br>
+<%= link_to "New transaction", new_transaction_path, class:"btn btn-secondary btn-lg"%>
