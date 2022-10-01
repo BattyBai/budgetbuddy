@@ -33,20 +33,24 @@
 
   <div class="form-group mb-3">
     <% form.label :category, style: "display: block" %>
-  
-  <select class="form-select" <%= form.text_field :category, class:"form-control" %>>
-    <option selected>Select Category</option>
-    <option value="Housing">Housing</option>
-    <option value="Transportation">Transportation</option>
-    <option value="Food/Grocery">Food/Grocery</option>
-    <option value="Utilities">Utilities</option>
-    <option value="Medical">Medical</option>
-    <option value="Entertainment">Entertainment</option>
-    <option value="Savings">Savings</option>
-    <option value="Miscellaneous">Misc</option>
-  </select>
+    <select class="form-select" <%= form.text_field :category, class:"form-control" %>>
+      <option selected disabled>Select Category</option>
+      <option value="Housing">Housing</option>
+      <option value="Transportation">Transportation</option>
+      <option value="Food/Grocery">Food/Grocery</option>
+      <option value="Utilities">Utilities</option>
+      <option value="Medical">Medical</option>
+      <option value="Entertainment">Entertainment</option>
+      <option value="Savings">Savings</option>
+      <option value="Miscellaneous">Misc</option>
+    </select>
   </div>
 
+  <div class="form-group mb-3">
+    <% form.label :user_id,  style: "display: block" %>
+    <%= form.number_field :user_id, id: :transaction_user_id, class:"form-control", type: :hidden, value:current_user.id%>
+  </div>
+  
   <div>
     <%= form.submit class: "btn btn-success btn-lg mt-3" %>
   </div>

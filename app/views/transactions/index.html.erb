@@ -1,5 +1,4 @@
-
-
+<% if user_signed_in? %>
 <h1>Transactions</h1>
 <div class="table-responsive">
   <table class="table table-striped table-hover table-bordered">
@@ -10,24 +9,32 @@
         <th>Description</th>
         <th>Amount</th>
         <th>Category</th>
-        <th colspan="3"></th>
+        <th colspan="2"></th>
       </tr>
     </thead>
     <tbody>
       <% @transactions.each do |transaction| %>
-        <tr>
-          <td><%= transaction.date %></td>
-          <td><%= transaction.name %></td>
-          <td><%= transaction.description %></td>
-          <td>$<%= transaction.amount %></td>
-          <td><%= transaction.category %></td>
-          <td><%= link_to "Show", transaction, class:"btn btn-primary"%></td>
-          <td><%= link_to 'Edit', edit_transaction_path(transaction), class:"btn btn-info" %></td> 
-          <td><%= button_to "Delete", @transaction, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class:"btn btn-danger" %></td> 
-        </tr>
+        <% if transaction.user == current_user%>
+          <tr>
+            <td><%= transaction.date %></td>
+            <td><%= link_to transaction.name, transaction %></td>
+            <td><%= transaction.description %></td>
+            <td>$<%= transaction.amount %></td>
+            <td><%= transaction.category %></td>
+            <td><%= link_to "Show", transaction, class:"btn btn-outline-primary btn-sm"%></td>
+            <td><%= button_to "Delete", @transaction, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class:"btn btn-outline-danger btn-sm" %></td> 
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
 <br>
 <%= link_to "New transaction", new_transaction_path, class:"btn btn-secondary btn-lg"%>
+
+<% else %>
+
+<h1>Hello World!</h1>
+first rails webpage
+
+<% end %>
