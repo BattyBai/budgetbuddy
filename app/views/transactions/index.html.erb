@@ -22,7 +22,7 @@
             <td>$<%= transaction.amount %></td>
             <td><%= transaction.category %></td>
             <td><%= link_to "Show", transaction, class:"btn btn-outline-primary btn-sm"%></td>
-            <td><%= button_to "Delete", @transaction, form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class:"btn btn-outline-danger btn-sm" %></td> 
+            <td><%= button_to "Delete", @transaction, method: :delete, class:"btn btn-outline-danger btn-sm" %></td> 
           </tr>
         <% end %>
       <% end %>
