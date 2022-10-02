@@ -21,6 +21,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :inital_balance %><br />
+    <%= f.number_field :balance, step: :any, autofocus: true, autocomplete: "balance" %>
+  </div>
+  
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

@@ -31,6 +31,11 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <div class="field">
+  <%= f.label :balance %><br />
+  <%= f.number_field :balance, step: :any, autofocus: true, autocomplete: "balance" %>
+</div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

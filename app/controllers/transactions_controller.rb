@@ -6,7 +6,12 @@ class TransactionsController < ApplicationController
   # GET /transactions or /transactions.json
   def index
     @transactions = Transaction.all
+    @accounts = Account.all
+    total = Transaction.where(user_id: current_user)
+    @sum_trans = total.where(user_id: current_user).sum(:amount)
+    @current_balance = current_user.balance - @sum_trans
   end
+
 
   # GET /transactions/1 or /transactions/1.json
   def show
